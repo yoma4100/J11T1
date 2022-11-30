@@ -1,30 +1,30 @@
 package ru.netology.domain;
 
 import ru.netology.PosterItem;
-import ru.netology.repository.PosterRepository;
 
-import java.util.Arrays;
-import java.util.Collections;
 
 public class PosterManager {
-    private PosterRepository repo;
     private int resultLength = 10;
-
-    public PosterManager(PosterRepository repo) {
-        this.repo = repo;
-    }
-
-    public PosterManager(PosterRepository repo, int a) {
-        this.repo = repo;
-        this.resultLength = a;
-    }
-
-    public void add(PosterItem item) {
-        repo.save(item);
+    private PosterItem[] items = new PosterItem[0];
+    public PosterManager(int resultLength) {
+        this.resultLength = resultLength;
     }
 
     public PosterItem[] findAll() {
-        PosterItem[] all = repo.findAll();
+        return items;
+    }
+
+    public void save(PosterItem item) {
+        PosterItem[] tmp = new PosterItem[items.length+1];
+        for (int i = 0; i < items.length; i++) {
+            tmp[i] = items[i];
+        }
+        tmp[tmp.length-1] = item;
+        items = tmp;
+    }
+
+    public PosterItem[] returnReversed() {
+        PosterItem[] all = findAll();
         PosterItem[] reversed = new PosterItem[all.length];
         PosterItem[] tmp;
         if (all.length >= this.resultLength) {

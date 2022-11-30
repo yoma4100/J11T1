@@ -1,15 +1,13 @@
 package ru.netology.domain;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.PosterItem;
-import ru.netology.repository.PosterRepository;
+
 
 
 public class PosterManagerTest {
-    PosterRepository repo = new PosterRepository();
-    PosterManager manager = new PosterManager(repo, 10);
+    PosterManager manager = new PosterManager(10);
     PosterItem item1 = new PosterItem(1, "Film1");
     PosterItem item2 = new PosterItem(2, "Film2");
     PosterItem item3 = new PosterItem(3, "Film3");
@@ -25,20 +23,20 @@ public class PosterManagerTest {
     @Test
     public void shouldShowLastTenFilmsWhenArraySizeMoreThenResultSize() {
 
-        manager.add(item1);
-        manager.add(item2);
-        manager.add(item3);
-        manager.add(item4);
-        manager.add(item5);
-        manager.add(item6);
-        manager.add(item7);
-        manager.add(item8);
-        manager.add(item9);
-        manager.add(item10);
-        manager.add(item11);
+        manager.save(item1);
+        manager.save(item2);
+        manager.save(item3);
+        manager.save(item4);
+        manager.save(item5);
+        manager.save(item6);
+        manager.save(item7);
+        manager.save(item8);
+        manager.save(item9);
+        manager.save(item10);
+        manager.save(item11);
 
         PosterItem[] expected = {item11, item10, item9, item8, item7, item6, item5, item4, item3, item2};
-        PosterItem[] actual = manager.findAll();
+        PosterItem[] actual = manager.returnReversed();
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -46,18 +44,18 @@ public class PosterManagerTest {
     @Test
     public void shouldShowAllFilmsWhenArraySizeLessThenResultSize() {
 
-        manager.add(item1);
-        manager.add(item2);
-        manager.add(item3);
-        manager.add(item4);
-        manager.add(item5);
-        manager.add(item6);
-        manager.add(item7);
-        manager.add(item8);
-        manager.add(item9);
+        manager.save(item1);
+        manager.save(item2);
+        manager.save(item3);
+        manager.save(item4);
+        manager.save(item5);
+        manager.save(item6);
+        manager.save(item7);
+        manager.save(item8);
+        manager.save(item9);
 
         PosterItem[] expected = {item9, item8, item7, item6, item5, item4, item3, item2, item1};
-        PosterItem[] actual = manager.findAll();
+        PosterItem[] actual = manager.returnReversed();
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -65,21 +63,20 @@ public class PosterManagerTest {
     @Test
     public void shouldShowAllFilmsWhenArraySizeEqualsResultSize() {
 
-        manager.add(item1);
-        manager.add(item2);
-        manager.add(item3);
-        manager.add(item4);
-        manager.add(item5);
-        manager.add(item6);
-        manager.add(item7);
-        manager.add(item8);
-        manager.add(item9);
-        manager.add(item10);
+        manager.save(item1);
+        manager.save(item2);
+        manager.save(item3);
+        manager.save(item4);
+        manager.save(item5);
+        manager.save(item6);
+        manager.save(item7);
+        manager.save(item8);
+        manager.save(item9);
+        manager.save(item10);
 
         PosterItem[] expected = {item10, item9, item8, item7, item6, item5, item4, item3, item2, item1};
-        PosterItem[] actual = manager.findAll();
+        PosterItem[] actual = manager.returnReversed();
 
         Assertions.assertArrayEquals(expected, actual);
     }
-
 }
