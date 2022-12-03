@@ -6,6 +6,10 @@ import ru.netology.PosterItem;
 public class PosterManager {
     private int resultLength = 10;
     private PosterItem[] items = new PosterItem[0];
+
+    public PosterManager() {
+    }
+
     public PosterManager(int resultLength) {
         this.resultLength = resultLength;
     }
@@ -15,11 +19,11 @@ public class PosterManager {
     }
 
     public void save(PosterItem item) {
-        PosterItem[] tmp = new PosterItem[items.length+1];
+        PosterItem[] tmp = new PosterItem[items.length + 1];
         for (int i = 0; i < items.length; i++) {
             tmp[i] = items[i];
         }
-        tmp[tmp.length-1] = item;
+        tmp[tmp.length - 1] = item;
         items = tmp;
     }
 
